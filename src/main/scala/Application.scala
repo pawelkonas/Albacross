@@ -41,6 +41,8 @@ object Application {
     val result = distEvents.map(e =>{AugmentedEvent(e.id, e.ipString, broadcastedTree.value.getTagFor(e.ip))})
     val augmentedEvents = result.collect
 
+    sc.stop
+
     val writer = new PrintWriter(new File("output.json"))
     writer.write(augmentedEvents.asJson.spaces2)
     writer.close
